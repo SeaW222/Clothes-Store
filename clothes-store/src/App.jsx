@@ -1,42 +1,36 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { publicRouter } from "./route/routes";
 import NotFound from "./page/NotFound";
 
 function App() {
   return (
-    <>
-      <Router>
-        <div className="App">
-          <Routes>
-            {/* Public Routes */}
-            {publicRouter.map((item, index) => {
-              const Page = item.element;
-              return item.layout ? (
-                <Route
-                  key={index + "publicRoute"}
-                  path={item.path}
-                  element={
-                    <item.layout type={item?.type}>
-                      <Page />
-                    </item.layout>
-                  }
-                />
-              ) : (
-                <Route
-                  key={item?.path + index}
-                  path={item?.path}
-                  element={<Page />}
-                />
-              );
-            })}
+    <Router>
+      <div className="App">
+        <Routes>
+          {/* Public Routes */}
+          {publicRouter.map((item, index) => {
+            const Page = item.element;
+            return item.layout ? (
+              <Route
+                key={index + "publicRoute"}
+                path={item.path}
+                element={
+                  <item.layout type={item?.type}>
+                    <Page />
+                  </item.layout>
+                }
+              />
+            ) : (
+              <Route
+                key={item?.path + index}
+                path={item?.path}
+                element={<Page />}
+              />
+            );
+          })}
 
-            {/* Admin Routes */}
-            {/* {adminRouter.map((item, index) => {
+          {/* Admin Routes */}
+          {/* {adminRouter.map((item, index) => {
               const Page = item.element;
               return item.layout ? (
                 <Route
@@ -61,13 +55,11 @@ function App() {
               );
             })} */}
 
-            {/* Fallback Route */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <ToastContainer />
-        </div>
-      </Router>
-    </>
+          {/* Fallback Route */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
