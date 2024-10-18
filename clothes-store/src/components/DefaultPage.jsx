@@ -1,11 +1,11 @@
 import React, { Children } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-const DefaultPage = ({ props }) => {
+const DefaultPage = ({ children }) => {
   return (
     <div>
       <Header />
-      {props?.Children}
+      {children}
       <Footer />
     </div>
   );
